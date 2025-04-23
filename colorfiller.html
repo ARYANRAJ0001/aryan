@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Flipper & Counter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .counter {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 1rem 0;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .flip-btn {
+            background: #3498db;
+            color: white;
+        }
+
+        .reset-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .credits {
+            position: fixed;
+            bottom: 1rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Color Flipper & Counter</h1>
+        <div class="counter" id="counter">0</div>
+        <div class="buttons">
+            <button class="flip-btn" onclick="decrement()">-</button>
+            <button class="flip-btn" onclick="increment()">+</button>
+            <button class="reset-btn" onclick="resetCounter()">Reset</button>
+        </div>
+    </div>
+    <div class="credits">Made by aryan</div>
+
+    <script>
+        let count = 0;
+        const counterElement = document.getElementById('counter');
+        const body = document.body;
+
+        function updateColor() {
+            const hue = (count * 10) % 360;
+            body.style.background = `hsl(${hue}, 70%, 80%)`;
+        }
+
+        function updateCounter() {
+            counterElement.textContent = count;
+            updateColor();
+        }
+
+        function increment() {
+            count++;
+            updateCounter();
+        }
+
+        function decrement() {
+            count--;
+            updateCounter();
+        }
+
+        function resetCounter() {
+            count = 0;
+            updateCounter();
+        }
+
+        // Initial color
+        updateColor();
+    </script>
+</body>
+</html>
